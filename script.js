@@ -1,6 +1,7 @@
 const gameContainer = document.getElementById("game");
 let flippedCards = [];
 let matched = 0;
+let SCORE = 0;
 const COLORS = [
   "red",
   "blue",
@@ -66,25 +67,27 @@ function createDivsForColors(colorArray) {
   }
 }
 
+function loadScoreBoard(SCORE) {
+    if (localStorage.getItem("high-score")) {
+        var highScore = localStorage.getItem("high-score");
+        } else {
+        var highScore = 0;
+        }
+    var scoreboard = document.getElementById('score');
+    scoreboard.innerHTML = "<h2>Score: " + SCORE + "</h2><p>High Score: " + highScore + "</p>";
+}
+
 // TODO: Implement this function!
 function handleCardClick(event) {
     this.classList.toggle('flip');
     var card = this.parentNode;
     flippedCards.push(card);
     if (flippedCards.length == 2) {
-        
-        console.log(flippedCards[0].classList + " " + flippedCards[1].classList);
         if (flippedCards[0].classList.toString() == flippedCards[1].classList.toString()) {
             matched++;
             flippedCards = [];
             console.log("yay!");
-            if (matched == COLORS.length / 2 ) {
-                setTimeout(function(){
-                    alert('you won!');
-                }, 1000);
-            }
-            }
-         else {
+            } else {
              setTimeout(function(){ 
              for(inner in flippedCards) {                flippedCards[inner].childNodes[0].classList.remove('flip');
             }
@@ -92,9 +95,27 @@ function handleCardClick(event) {
             console.log('boo!');
              }, 1000);  
         }
+        SCORE++;
+        loadScoreBoard(SCORE);
+        if (matched == COLORS.length / 2 ) {
+            console.log('winner');
+            winner(SCORE);
+        }
     }
-    
+}
+
+function winner(SCORE) {
+    console.log('winnerfunc');
+    if (parseInt(localStorage.getItem('high-score')) > SCORE) {
+        localStorage.setItem("high-score", SCORE);
+        }
+    loadScoreBoard(SCORE);
 }
 
 // when the DOM loads
-createDivsForColors(shuffledColors);
+function startGame() {
+    document.getElementById('startGame').remove();
+    createDivsForColors(shuffledColors);
+    loadScoreBoard(SCORE); 
+}
+

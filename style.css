@@ -1,5 +1,30 @@
-#game div {
-  display: inline-block; 
+#game {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#score {
+    text-align: center;
+}
+
+#startGame {
+    height:100vh;
+    width:100vw;
+    text-align: center;
+}
+
+button {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color:lightyellow;
+    height: 50px;
+    width: 100px;
+    border-radius: 10px;
 }
 
 h1 {
@@ -7,13 +32,13 @@ h1 {
 }
 
 .card {
+    
     background-color: transparent;
     width:200px;
     height:200px;
     border: 1px solid #f1f1f1;
     perspective: 1000px;
-    display: flex;
-    flex-direction: column;
+    flex-basis: 19%;
 }
 
 .card-inner {
