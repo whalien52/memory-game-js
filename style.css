@@ -1,0 +1,81 @@
+#game div {
+  display: inline-block; 
+}
+
+h1 {
+    text-align: center;
+}
+
+.card {
+    background-color: transparent;
+    width:200px;
+    height:200px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-inner {
+    position: relative;
+    width:100%;
+    height:100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    z-index: 999;
+}
+
+.front
+{
+    background-image: url(springboard.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+}
+
+.back {
+    color: white;
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    transform:rotateY(180deg);
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.white {
+    background-color: white!important;
+}
+
+.purple {
+    background-color: mediumpurple;
+}
+
+.blue {
+    background-color: aqua;
+}
+
+.green {
+    background-color: greenyellow;
+}
+
+.red {
+    background-color: palevioletred;
+}
+
+.orange {
+    background-color: orange;
+}
